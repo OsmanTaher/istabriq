@@ -1,5 +1,6 @@
-import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { CartProvider } from "@/context/CartContext";
 
 export default function StoreLayout({
   children,
@@ -7,10 +8,14 @@ export default function StoreLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
-      <main className="grow">{children}</main>
-      <Footer />
-    </div>
+    <CartProvider>
+      <div className="min-h-screen flex flex-col bg-white">
+        <Header />
+
+        <main className="flex-grow">{children}</main>
+
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }

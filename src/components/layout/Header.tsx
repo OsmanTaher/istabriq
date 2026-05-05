@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ShoppingCart, Menu, X } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -60,10 +62,12 @@ export default function Header() {
             className="relative p-2 text-gray-700 hover:text-[#104028] transition-colors"
           >
             <ShoppingCart size={24} />
-{/* jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj */}
-            <span className="absolute top-0 right-0 bg-[#104028] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-              3
-            </span>
+
+            {totalItems > 0 && (
+              <span className="absolute top-0 right-0 bg-[#104028] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {totalItems}
+              </span>
+            )}
           </Link>
         </div>
       </div>

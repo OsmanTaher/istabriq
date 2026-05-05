@@ -60,22 +60,19 @@ const featuredProducts = [
     id: 1,
     title: "مصحف المدينة بحجم كبير",
     price: 280,
-    image:
-      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
   },
   {
     id: 2,
     title: "صندل رجالي جلدي",
     price: 450,
-    image:
-      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
   },
   {
     id: 3,
     title: "جلابية رجالي فاخرة",
     price: 650,
-    image:
-      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
   },
   {
     id: 4,
@@ -83,24 +80,174 @@ const featuredProducts = [
     price: 600,
     oldPrice: 750,
     badge: { text: "خصم 20%", colorClass: "bg-red-600" },
-    image:
-      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
   },
   {
     id: 5,
     title: "سواك طبيعي (10 قطع)",
     price: 60,
-    image:
-      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
   },
   {
     id: 6,
     title: "عطر مسك الطهارة",
     price: 320,
     badge: { text: "جديد", colorClass: "bg-[#104028]" },
-    image:
-      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
   },
+  {
+    id: 7,
+    title: "سبحة عقيق يماني",
+    price: 150,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 8,
+    title: "شماغ أحمر كلاسيك",
+    price: 220,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 9,
+    title: "عقال مقصب ملكي",
+    price: 180,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 10,
+    title: "دهن عود كمبودي معتق",
+    price: 1200,
+    oldPrice: 1500,
+    badge: { text: "حصري", colorClass: "bg-yellow-500" },
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 11,
+    title: "سجادة صلاة مبطنة طبية",
+    price: 135,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 12,
+    title: "مبخرة خشبية حائلية",
+    price: 90,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 13,
+    title: "بخور عود مروكي",
+    price: 450,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 14,
+    title: "ثوب شتوي رجالي داكن",
+    price: 350,
+    badge: { text: "جديد", colorClass: "bg-[#104028]" },
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 15,
+    title: "طاقية قطن 100%",
+    price: 25,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 16,
+    title: "عطر أمير العود",
+    price: 250,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 17,
+    title: "خاتم فضة عيار 925",
+    price: 300,
+    oldPrice: 400,
+    badge: { text: "خصم 25%", colorClass: "bg-red-600" },
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 18,
+    title: "محفظة بطاقات جلد طبيعي",
+    price: 180,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 19,
+    title: "ساعة يد كلاسيكية ذهبية",
+    price: 850,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 20,
+    title: "حذاء شرقي مطرز يدويًا",
+    price: 550,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 21,
+    title: "حقيبة يد جلدية للأعمال",
+    price: 750,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 22,
+    title: "مسك الختام (تولة)",
+    price: 150,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 23,
+    title: "حامل مصحف خشبي مزخرف",
+    price: 110,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 24,
+    title: "مصحف التجويد الملون",
+    price: 95,
+    badge: { text: "الأكثر مبيعاً", colorClass: "bg-blue-600" },
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 25,
+    title: "تفسير ابن كثير (4 مجلدات)",
+    price: 320,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 26,
+    title: "عطر ورد طائفي قطفة أولى",
+    price: 900,
+    oldPrice: 1100,
+    badge: { text: "خصم 18%", colorClass: "bg-red-600" },
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 27,
+    title: "مسبحة إلكترونية ذكية",
+    price: 45,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 28,
+    title: "صندوق هدايا فاخر للعود",
+    price: 120,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 29,
+    title: "غترة بيضاء سويسرية",
+    price: 190,
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 30,
+    title: "سديري رجالي بوجهين",
+    price: 240,
+    badge: { text: "جديد", colorClass: "bg-[#104028]" },
+    image: "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  }
 ];
 
 export default function HomePage() {
@@ -178,6 +325,7 @@ export default function HomePage() {
           {featuredProducts.map((product) => (
             <ProductCard
               key={product.id}
+              id={product.id}
               title={product.title}
               price={product.price}
               oldPrice={product.oldPrice}

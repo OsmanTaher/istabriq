@@ -1,22 +1,25 @@
+"use client";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
-
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
+  id: number;
   title: string;
   price: number;
   oldPrice?: number;
   imageUrl: string;
   badge?: { text: string; colorClass: string };
 }
-
 export default function ProductCard({
+  id,
   title,
   price,
   oldPrice,
   imageUrl,
   badge,
 }: ProductCardProps) {
+  const { addToCart } = useCart();
   return (
     <div className="bg-white border border-gray-100 rounded-2xl p-4 hover:shadow-lg transition-shadow relative flex flex-col group cursor-pointer">
       {badge && (
@@ -54,7 +57,13 @@ export default function ProductCard({
           </div>
         </div>
 
-        <button className="p-2 border border-[#104028] text-[#104028] rounded-xl hover:bg-[#104028] hover:text-white transition-colors">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            addToCart({ id, title, price, image: imageUrl });
+          }}
+          className="p-2 border border-[#104028] text-[#104028] rounded-xl hover:bg-[#104028] hover:text-white transition-colors"
+        >
           <ShoppingCart size={18} />
         </button>
       </div>
