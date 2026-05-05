@@ -1,4 +1,64 @@
 
+export const categories = [
+  {
+    id: 5,
+    title: "الجلابيات",
+    category: "jalabiyas",
+    count: 32,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 6,
+    title: "السواك",
+    category: "siwak",
+    count: 18,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 7,
+    title: "العطور والبخور",
+    category: "perfumes-and-incense",
+    count: 24,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 4,
+    title: "الأحذية والنعال",
+    category: "shoes",
+    count: 21,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 3,
+    title: "المصاحف و الكتب",
+    category: "books-and-quran",
+    count: 15,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 1,
+    title: "هدايا وتغليف",
+    category: "gifts-and-packaging",
+    count: 12,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+  {
+    id: 2,
+    title: "إكسسوارات",
+    category: "accessories",
+    count: 19,
+    image:
+      "https://pub-e12827655f16445aa550b52e498084bc.r2.dev/1777241933645-Screenshot-2026-04-14-213329.png",
+  },
+];
+
+
 export const featuredProducts = [
   {
     id: 1,

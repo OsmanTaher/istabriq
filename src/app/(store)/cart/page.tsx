@@ -8,7 +8,7 @@ import { useCart } from "@/context/CartContext";
 export default function CartPage() {
   const { cartItems, updateQuantity, removeFromCart, totalPrice } = useCart();
 
-  const FREE_SHIPPING_THRESHOLD = 260;
+  const FREE_SHIPPING_THRESHOLD = 300;
   const shippingCost = totalPrice >= FREE_SHIPPING_THRESHOLD ? 0 : 30;
   const finalTotal = totalPrice + shippingCost;
   const progressPercentage = Math.min(

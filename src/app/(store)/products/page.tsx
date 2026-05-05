@@ -1,5 +1,4 @@
-// app/product/page.tsx
-import { featuredProducts } from "@/lib/data"; // افترضنا أن البيانات في هذا المسار
+import { featuredProducts } from "@/lib/data";
 import ProductCard from "@/components/store/ProductCard";
 
 export default function AllProductsPage() {
