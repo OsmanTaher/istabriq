@@ -7,3 +7,6 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.boundary {
+  border: 2px solid mediumaquamarine;
+}

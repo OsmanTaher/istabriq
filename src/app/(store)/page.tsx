@@ -107,7 +107,7 @@ export default function HomePage() {
   return (
     <div className="container mx-auto px-4 py-8 space-y-16">
       <section className="relative rounded-2xl overflow-hidden shadow-sm bg-[#F8F5F0]">
-        <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden flex items-center justify-center">
+        <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden flex items-center justify-start">
           <Image
             src="/heroImg.png"
             alt="منتجات إسلامية متنوعة"
@@ -116,13 +116,13 @@ export default function HomePage() {
             priority
           />
 
-          <div className="relative z-10 w-full max-w-4xl px-6 text-center flex flex-col items-center">
+          <div className="relative z-10 w-full max-w-4xl px-6 text-center flex flex-col items-start">
             <h2 className="text-[clamp(1.5rem,5vw,3.5rem)] font-bold text-white leading-tight mb-4 drop-shadow-lg">
               كل ما تحتاجه <br /> في مكان واحد
             </h2>
 
             <p className="text-[clamp(1rem,2vw,1.25rem)] text-gray-100 mb-8 max-w-lg drop-shadow-md">
-              منتجات إسلامية أصلية بجودة عالية وأسعار مميزة
+              منتجات إسلامية أصلية <br className="md:hidden" /> بجودة عالية وأسعار مميزة
             </p>
 
             <Link
@@ -149,7 +149,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+        <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar boundary">
           {categories.map((cat) => (
             <CategoryCard
               key={cat.id}

@@ -60,7 +60,7 @@ export default function Header() {
             className="relative p-2 text-gray-700 hover:text-[#104028] transition-colors"
           >
             <ShoppingCart size={24} />
-
+{/* jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj */}
             <span className="absolute top-0 right-0 bg-[#104028] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
               3
             </span>

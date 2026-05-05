@@ -19,7 +19,7 @@ export default function Footer() {
             الأسواني
           </a>
 
-          <span>كل الحقوق محفظوفة &copy; 2026</span>
+          <span>كل الحقوق محفظوفة 2026</span>
         </div>
       </div>
     </footer>

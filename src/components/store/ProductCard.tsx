@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 
+
 interface ProductCardProps {
   title: string;
   price: number;
