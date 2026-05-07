@@ -34,7 +34,7 @@ export default function HomePage() {
 
             <Link
               href="/products"
-              className="md:bg-[#104028] md:hover:bg-[#1a5c3a]  border-1 text-white px-8 py-3 rounded-xl
+              className="md:bg-[#104028] md:hover:bg-[#1a5c3a]  border-1 md:border-0 text-white px-8 py-3 rounded-xl
                          flex items-center gap-2 transition-all font-semibold shadow-lg hover:shadow-lg
                          "
             >
