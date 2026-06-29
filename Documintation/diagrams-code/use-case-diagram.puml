@@ -1,0 +1,68 @@
+@startuml
+' --- الإعدادات والمعايير الهندسية المتعارف عليها ---
+left to right direction
+skinparam monochrome true
+skinparam packageStyle rectangle
+
+' --- تعريف الأدوار (Actors) ---
+actor "Client" as Client
+
+package "Management & Automation" {
+    actor "Admin" as Admin
+    actor "Telegram Bot" as Bot
+}
+
+' --- حدود النظام (System Boundary) ---
+rectangle "Istabriq Web App & Bot System" {
+    
+    ' مسارات رحلة العميل (Client Use Cases)
+    usecase "Browse Products" as UC_Browse
+    usecase "Quick View Product\nModal/Bottom-sheet" as UC_QuickView
+    usecase "Add to Cart\n(Zustand State)" as UC_AddToCart
+    usecase "Sign Up\n(With WhatsApp/Telegram Checkboxes)" as UC_SignUp
+    usecase "Log In to Account" as UC_Login
+    usecase "Checkout &\nShipping Address" as UC_Checkout
+    usecase "Track Order via\n5-Digit Code" as UC_TrackOrder
+    
+    ' مسارات الأتمتة عبر البوت (Telegram Bot Use Cases)
+    usecase "Receive Instant Order Notification\n(Full Customer/Items Layout)" as UC_ReceiveNotification
+    usecase "Quick Confirm/Cancel\nvia Inline Buttons" as UC_InlineAction
+    
+    ' مسارات لوحة تحكم الأدمن (Admin Dashboard Use Cases)
+    usecase "Secure Admin Login\n(Middleware Protected)" as UC_AdminLogin
+    usecase "Search & Update Order Status\n(Pending -> In-Transit -> Delivered)" as UC_ManageOrders
+    usecase "Upload Product with\nDiscounts & Images" as UC_UploadProduct
+    usecase "Products CRUD\nManagement" as UC_ProductsCRUD
+    usecase "View Registered Users\nwith Order History" as UC_ViewUsers
+}
+
+' --- علاقات العميل (الجانب الأيسر) ---
+Client --> UC_Browse
+Client --> UC_QuickView
+Client --> UC_AddToCart
+Client --> UC_SignUp
+Client --> UC_Login
+Client --> UC_Checkout
+Client --> UC_TrackOrder
+
+' العلاقات المضمنة والملاحظات الشرطية القياسية
+UC_Checkout ..> UC_SignUp : <<include>>
+note on link
+  If the user is a 
+  guest during checkout
+end note
+
+' --- علاقات البوت والأدمن (الجانب الأيمن) ---
+' ربط البوت بالوظائف المشتركة والخاصة به
+UC_ReceiveNotification <- Bot
+UC_InlineAction <- Bot
+
+' ربط الأدمن بلوحة التحكم وبأزرار البوت التفاعلية
+UC_AdminLogin <- Admin
+UC_ManageOrders <- Admin
+UC_UploadProduct <- Admin
+UC_ProductsCRUD <- Admin
+UC_ViewUsers <- Admin
+UC_InlineAction <- Admin
+
+@enduml
