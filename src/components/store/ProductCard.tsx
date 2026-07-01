@@ -1,71 +1,100 @@
 "use client";
 import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Eye } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
+// تعريف دقيق للبيانات المستقبلة متوافقة مع المصفوفة المحدثة
 interface ProductCardProps {
   id: number;
   title: string;
   price: number;
   oldPrice?: number;
-  imageUrl: string;
+  images: string[]; // مصفوفة الصور الجديدة بدلاً من imageUrl الفردية
+  desc: string;     // الوصف المضاف للمحاكاة
   badge?: { text: string; colorClass: string };
+  onQuickView: () => void; // حدث تشغيل المعاينة السريعة
 }
+
 export default function ProductCard({
   id,
   title,
   price,
   oldPrice,
-  imageUrl,
+  images,
   badge,
+  onQuickView,
 }: ProductCardProps) {
   const { addToCart } = useCart();
+  const primaryImage = images[0] || "/logo.png"; // الصورة الأولى كصورة رئيسية للعبور
+
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-4 hover:shadow-lg transition-shadow relative flex flex-col group cursor-pointer">
+    <div className="bg-white border border-gray-100 rounded-2xl p-4 hover:shadow-xl transition-all duration-300 relative flex flex-col group cursor-pointer">
+      {/* الشارة التوضيحية (Badge) */}
       {badge && (
         <span
-          className={`absolute top-3 right-3 text-white text-[10px] font-bold px-2 py-1 rounded-md z-10 ${badge.colorClass}`}
+          className={`absolute top-3 right-3 text-white text-[10px] font-bold px-2 py-1 rounded-md z-10 shadow-sm ${badge.colorClass}`}
         >
           {badge.text}
         </span>
       )}
 
-      <div className="relative h-40 w-full mb-4 bg-gray-50/50 rounded-xl overflow-hidden">
+      {/* منطقة عرض صورة المنتج */}
+      <div className="relative h-44 w-full mb-4 bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center">
         <Image
-          src={imageUrl}
+          src={primaryImage}
           alt={title}
           fill
-          className="object-contain group-hover:scale-105 transition-transform duration-300 p-2"
+          className="object-contain group-hover:scale-105 transition-transform duration-300 p-3"
         />
       </div>
 
-      <h3 className="font-semibold text-gray-800 mb-4 text-sm line-clamp-2 leading-relaxed">
+      {/* عنوان المنتج */}
+      <h3 className="font-semibold text-gray-800 mb-3 text-sm line-clamp-2 leading-relaxed h-10 text-right">
         {title}
       </h3>
 
-      <div className="mt-auto flex items-center justify-between">
-        <div className="flex flex-col">
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold text-[#104028]">
-              {price} ج.م
+      {/* التحكم والأسعار */}
+      <div className="mt-auto flex items-center justify-between gap-2">
+        {/* قسم الأسعار بالجنيه المصري */}
+        <div className="flex flex-col text-right">
+          <span className="text-base font-bold text-[#104028]">
+            {price} ج.م
+          </span>
+          {oldPrice && (
+            <span className="text-xs text-gray-400 line-through mt-0.5">
+              {oldPrice} ج.م
             </span>
-            {oldPrice && (
-              <span className="text-xs text-gray-400 line-through">
-                {oldPrice} ج.م
-              </span>
-            )}
-          </div>
+          )}
         </div>
 
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            addToCart({ id, title, price, image: imageUrl });
-          }}
-          className="p-2 border border-[#104028] text-[#104028] rounded-xl hover:bg-[#104028] hover:text-white transition-colors"
-        >
-          <ShoppingCart size={18} />
-        </button>
+        {/* أزرار التفاعل الجانبية */}
+        <div className="flex items-center gap-1.5">
+          {/* زر المعاينة السريعة الذكي (أيقونة العين) */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onQuickView();
+            }}
+            className="p-2 border border-gray-200 text-gray-500 rounded-xl hover:bg-gray-50 hover:text-gray-800 transition-colors"
+            title="معاينة سريعة"
+          >
+            <Eye size={18} />
+          </button>
+
+          {/* زر الإضافة إلى السلة المستمرة */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addToCart({ id, title, price, image: primaryImage });
+            }}
+            className="p-2 bg-[#104028] text-white rounded-xl hover:bg-[#0b2c1c] transition-colors shadow-sm"
+            title="أضف إلى السلة"
+          >
+            <ShoppingCart size={18} />
+          </button>
+        </div>
       </div>
     </div>
   );

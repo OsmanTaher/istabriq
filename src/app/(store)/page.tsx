@@ -81,7 +81,7 @@ export default function HomePage() {
               price={product.price}
               oldPrice={product.oldPrice}
               badge={product.badge}
-              imageUrl={product.image}
+              images={product.images}
             />
           ))}
         </div>

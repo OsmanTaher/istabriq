@@ -1,0 +1,109 @@
+@startuml
+' --- الإعدادات والمعايير الهندسية المتعارف عليها ---
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+left to right direction
+
+package "Core Domain Models (Mongoose & TypeScript)" {
+
+    class "User (IUser)" as User {
+        +_id: ObjectId
+        +name: string
+        +email: string
+        +phone: string
+        +password: string
+        +role: "client" | "admin"
+        +communicationPrefs: CommunicationPrefs
+        +createdAt: Date
+        +updatedAt: Date
+    }
+
+    class "CommunicationPrefs" as CommPrefs {
+        +whatsapp: boolean
+        +telegram: boolean
+    }
+
+    class "Product (IProduct)" as Product {
+        +_id: ObjectId
+        +title: string
+        +slug: string
+        +description: string
+        +price: number
+        +discountPrice: number
+        +images: string[] 
+        +category: string
+        +stock: number
+        +isFeatured: boolean
+        +createdAt: Date
+        +updatedAt: Date
+    }
+
+    class "Order (IOrder)" as Order {
+        +_id: ObjectId
+        +user: ObjectId [Optional]
+        +customerDetails: CustomerDetails
+        +items: OrderItem[]
+        +totalPrice: number
+        +status: "pending" | "in-transit" | "delivered" | "cancelled"
+        +trackingCode: string 
+        +createdAt: Date
+        +updatedAt: Date
+    }
+
+    class "CustomerDetails" as CustDetails {
+        +name: string
+        +phone: string
+        +address: string
+        +city: string
+    }
+
+    class "OrderItem" as OrderItem {
+        +product: ObjectId
+        +title: string
+        +price: number
+        +quantity: number
+    }
+}
+
+package "Client State Management (Zustand)" {
+    class "CartStore" as CartStore {
+        +items: CartItem[]
+        +addItem(product: IProduct, quantity: number): void
+        +removeItem(productId: string): void
+        +updateQuantity(productId: string, quantity: number): void
+        +clearCart(): void
+        +getTotalPrice(): number
+    }
+    
+    class "CartItem" as CartItem {
+        +product: IProduct
+        +quantity: number
+    }
+}
+
+package "External Integration Services" {
+    class "TelegramBotService" as TelegramBot {
+        +sendOrderNotification(order: IOrder): Promise<boolean>
+        +handleInlineAction(callbackQuery: any): Promise<void>
+    }
+
+    class "CloudinaryService" as Cloudinary {
+        +uploadImage(fileBuffer: Buffer): Promise<string>
+        +deleteImage(publicId: string): Promise<boolean>
+    }
+}
+
+' --- العلاقات والروابط الهندسية (Relationships) ---
+User "1" *-- "1" CommPrefs : contains
+Order "1" *-- "1" CustDetails : contains
+Order "1" *-- "1..*" OrderItem : embeds
+OrderItem "1" --> "1" Product : references (ObjectId)
+Order "*" --> "0..1" User : places (Optional for Guests)
+
+CartStore "1" *-- "*" CartItem : manages
+CartItem "1" --> "1" Product : wraps
+
+TelegramBot ..> Order : consumes
+Product ..> Cloudinary : URL from
+
+@enduml

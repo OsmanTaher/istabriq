@@ -1,0 +1,78 @@
+@startuml
+autonumber
+skinparam monochrome true
+skinparam ParticipantPadding 12
+skinparam BoxPadding 10
+
+actor "العميل (Client)" as Client
+box "Frontend (Client-Side - Zustand & Next.js UI)" #LightGray
+    participant "صفحة الدفع\n(Checkout Page)" as Checkout
+    participant "متجر السلة\n(Zustand CartStore)" as Cart
+end box
+
+box "Backend (Next.js Server - App Router)" #WhiteSmoke
+    participant "مسار الطلبات\n(POST /api/orders)" as API
+    participant "إدارة الاتصال\n(dbConnect)" as DBConn
+    participant "نموذج الطلب\n(Mongoose Order Model)" as OrderModel
+end box
+
+box "External Services & Automation" #LightYellow
+    participant "قاعدة البيانات\n(MongoDB Atlas)" as MongoDB
+    participant "خدمة البوت\n(TelegramBotService)" as BotService
+end box
+
+actor "الأدمن (Admin)" as Admin
+
+' --- بداية الرحلة ---
+Client -> Checkout : إدخال بيانات الشحن والضغط على "تأكيد الطلب"
+activate Checkout
+
+Checkout -> Cart : جلب المنتجات المضافة وإجمالي السعر (getItems & Total)
+activate Cart
+Cart --> Checkout : تفاصيل السلة الحالية (Cart Items)
+deactivate Cart
+
+Checkout -> API : إرسال تفاصيل العميل والمنتجات (Fetch POST Payload)
+activate API
+
+' --- معالجة البيانات في السيرفر ---
+API -> DBConn : التحقق من حالة الاتصال وقابليته لإعادة الاستخدام (Pooling)
+activate DBConn
+DBConn -> DBConn : فحص الكائن العالمي (Check Cached Global Mongoose Instance)
+DBConn --> API : الاتصال جاهز ومستقر (DB Connected)
+deactivate DBConn
+
+API -> OrderModel : إنشاء كائن طلب جديد والتحقق من القيود (New Order & Validate)
+activate OrderModel
+
+OrderModel -> MongoDB : حفظ الطلب في قاعدة البيانات + توليد كود التتبع (Save Document)
+activate MongoDB
+MongoDB --> OrderModel : تم الحفظ بنجاح (Document Saved with 5-Digit trackingCode)
+deactivate MongoDB
+
+OrderModel --> API : إرجاع كائن الطلب المكتمل (Created Order Object)
+deactivate OrderModel
+
+' --- خطوة الأتمتة وإرسال الإشعار ---
+alt عملية أتمتة الإرسال (Asynchronous Notification)
+    API -> BotService : تمرير بيانات الطلب لخدمة البوت (sendOrderNotification)
+    activate BotService
+    BotService -> Admin : إرسال رسالة منسقة بالكامل عبر الـ API إلى Telegram (مع أزرار التأكيد)
+    Admin --> BotService : استلام وقراءة الإشعار الفوري
+    BotService --> API : تم إرسال الإشعار بنجاح (Notification Dispatched)
+    deactivate BotService
+end
+
+' --- نهاية المعاملة ورد الاستجابة ---
+API --> Checkout : استجابة بالنجاح وكود التتبع خماسي الأرقام (201 Created + trackingCode)
+deactivate API
+
+Checkout -> Cart : تفريغ السلة بالكامل بعد نجاح العملية (clearCart)
+activate Cart
+Cart --> Checkout : تم تصفير السلة بنجاح
+deactivate Cart
+
+Checkout --> Client : توجيه العميل لصفحة النجاح وعرض كود التتبع (/success?code=XXXXX)
+deactivate Checkout
+
+@enduml
